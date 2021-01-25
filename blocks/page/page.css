@@ -12,3 +12,15 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
 }
+
+@media (max-width: 1050px) {
+  .page {
+    width: 80%;
+  }
+}
+
+@media (max-width: 850px) {
+  .page {
+    width: 90%;
+  }
+}
