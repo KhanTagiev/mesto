@@ -7,6 +7,7 @@
   padding: 0;
   min-width: 24px;
   min-height: 24px;
+  transition: opacity .8s ease 0s;
 }
 
 @media (max-width: 650px) {
@@ -15,4 +16,9 @@
     min-height: 18px;
     background-size: 45%;
   }
+}
+
+.profile__edit-btn:hover {
+  opacity: .6;
+  cursor: pointer;
 }

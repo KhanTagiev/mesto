@@ -8,6 +8,7 @@
   padding: 0;
   border: 2px solid #FFFFFF;
   border-radius: 2px;
+  transition: opacity .8s ease 0s;
 }
 
 @media (max-width: 850px) {
@@ -24,4 +25,9 @@
     grid-column-start: 1;
     grid-column-end: 2;
   }
+}
+
+.profile__add-btn:hover {
+  opacity: .6;
+  cursor: pointer;
 }

@@ -11,3 +11,12 @@
 @import url('../blocks/profile/__description/profile__description.css');
 @import url('../blocks/profile/__edit-btn/profile__edit-btn.css');
 @import url('../blocks/profile/__add-btn/profile__add-btn.css');
+@import url('../blocks/photo/photo.css');
+@import url('../blocks/photo-cards/photo-cards.css');
+@import url('../blocks/photo-card/photo-card.css');
+@import url('../blocks/photo-card/__image/photo-card__image.css');
+@import url('../blocks/photo-card/__info/photo-card__info.css');
+@import url('../blocks/photo-card/__name/photo-card__name.css');
+@import url('../blocks/photo-card/__like-btn/photo-card__like-btn.css');
+@import url('../blocks/footer/footer.css');
+@import url('../blocks/footer/__copyright/footer__copyright.css');
