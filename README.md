@@ -15,4 +15,4 @@
 
 **Просмотр на GitHub Pages**
 
-[Ссылка на страницу GitHub Pages](https://khпшеantagiev.github.io/mesto/index.html)
+[Ссылка на страницу GitHub Pages](https://khantagiev.github.io/mesto/index.html)
