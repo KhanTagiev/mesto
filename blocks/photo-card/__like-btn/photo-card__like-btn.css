@@ -1,7 +1,7 @@
 .photo-card__like-btn {
   background-color: #fff;
   border: 0;
-  background-image: url('../../../images/like-btn_disabled.svg');
+  background-image: url('../../../images/like-btn.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   padding: 0;
