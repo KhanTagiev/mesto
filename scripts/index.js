@@ -9,21 +9,24 @@ let profile = document.querySelector('.profile')
 let nameProfile = profile.querySelector('.profile__name')
 let jobProfile = profile.querySelector('.profile__job')
 
-function togglePopup() {
-  popup.classList.toggle('popup_opened')
+function openPopup() {
+  popup.classList.add('popup_opened')
   nameInput.value = nameProfile.textContent
   jobInput.value = jobProfile.textContent;
 }
 
-openPopupBtn.addEventListener('click', togglePopup)
-closePopupBtn.addEventListener('click', togglePopup)
+function closePopup() {
+  popup.classList.remove('popup_opened')
+}
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value
-    togglePopup()
+    closePopup()
  }
 
-formElement .addEventListener('submit', formSubmitHandler);
+openPopupBtn.addEventListener('click', openPopup)
+closePopupBtn.addEventListener('click', closePopup)
+formElement .addEventListener('submit', formSubmitHandler)
 
