@@ -7,6 +7,8 @@
   color: #fff;
   height: 50px;
   transition: opacity .8s ease 0s;
+  border: none;
+  padding: 0;
 }
 
 .form__save-btn:hover {

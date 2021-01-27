@@ -68,20 +68,20 @@
   </li>
 </ul>
 </section>
+</main>
 <section class="popup">
-  <button class="popup__close-btn" type="button" aria-label="Закрыть окно редактирования"></button>
   <div class="popup__container">
     <h2 class="popup__title">Редактировать профиль</h2>
-    <form class="form">
+    <form class="form" name="profile-info">
       <fieldset class="form__profile">
-        <input class="form__input form__input_name" type="text" value="Жак-Ив Кусто" placeholder="Имя">
-        <input class="form__input form__input_job" type="text" value="Исследователь океана" placeholder="Занятие">
+        <input class="form__input form__input_name" type="text" value="Жак-Ив Кусто" placeholder="Имя" name="profile-name">
+        <input class="form__input form__input_job" type="text" value="Исследователь океана" placeholder="Занятие" name="profile-job">
         <button class="form__save-btn"  type="submit" aria-label="Сохранить изменения в профиле">Сохранить</button>
       </fieldset>
     </form>
+    <button class="popup__close-btn" type="button" aria-label="Закрыть окно редактирования"></button>
   </div>
 </section>
-</main>
 <footer class="footer">
   <p class="footer__copyright">&#169; 2021. Mesto Russia</p>
 </footer>
