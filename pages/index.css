@@ -20,6 +20,7 @@
 @import url('../blocks/photo-card/__name/photo-card__name.css');
 @import url('../blocks/photo-card/__like-btn/photo-card__like-btn.css');
 @import url('../blocks/photo-card/__like-btn/_active/photo-card__like-btn_active.css');
+@import url('../blocks/photo-card/__delete-btn/photo-card__delete-btn.css');
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
 @import url('../blocks/popup/popup.css');
