@@ -1,0 +1,13 @@
+.photo-card__btn {
+  background-color: rgba(255, 255, 255, 0);
+  border: 0;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  padding: 0;
+  transition: opacity .8s ease 0s;
+}
+
+.photo-card__btn:hover {
+  opacity: .5;
+  cursor: pointer;
+}
