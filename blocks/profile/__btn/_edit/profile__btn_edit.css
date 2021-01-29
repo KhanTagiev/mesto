@@ -1,0 +1,13 @@
+.profile__btn_edit {
+  background-image: url('../../../../images/edit-btn.svg');
+  min-width: 24px;
+  min-height: 24px;
+}
+
+@media (max-width: 650px) {
+  .profile__btn_edit {
+    min-width: 18px;
+    min-height: 18px;
+    background-size: 45%;
+  }
+}
