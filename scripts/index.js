@@ -26,18 +26,24 @@ const initialCards = [
 ];
 
 let popup = document.querySelector('.popup')
-let popupProfile = document.querySelector('.popup_profile')
-let popupPhotoCard = document.querySelector('.popup_photo-card')
-//let popupPhoto = document.querySelector('.popup_photo')
 let openPopupProfileBtn = document.querySelector('.profile__btn_edit')
 let openPopupPhotoCardBtn = document.querySelector('.profile__btn_add')
+
+let popupProfile = document.querySelector('.popup_profile')
 let closePopupProfileBtn = popupProfile.querySelector('.popup__btn_close')
-let closePopupPhotoCardBtn = popupPhotoCard.querySelector('.popup__btn_close')
-//let closePopupPhotoBtn = popupPhoto.querySelector('.popup__btn_close')
 let formElementProfile = popupProfile.querySelector('.form')
 let nameInput = formElementProfile.querySelector('.form__input_name')
 let jobInput = formElementProfile.querySelector('.form__input_job')
-let saveFormBtn = formElementProfile.querySelector('.form__btn_save')
+
+let popupPhotoCard = document.querySelector('.popup_photo-card')
+let closePopupPhotoCardBtn = popupPhotoCard.querySelector('.popup__btn_close')
+let formElementPhotoCard = popupPhotoCard.querySelector('.form')
+let siteInput = formElementPhotoCard.querySelector('.form__input_site')
+let linkInput = formElementPhotoCard.querySelector('.form__input_url')
+
+//let popupPhoto = document.querySelector('.popup_photo')
+//let closePopupPhotoBtn = popupPhoto.querySelector('.popup__btn_close')
+
 let profile = document.querySelector('.profile')
 let nameProfile = profile.querySelector('.profile__name')
 let jobProfile = profile.querySelector('.profile__job')
@@ -60,22 +66,32 @@ function formSubmitHandler (evt) {
     togglePopup(popupProfile)
 }
 
-function renderCards() {
-  const cards = initialCards.map(getCard)
-  photoCardsContainer.append(...cards)
-}
-
 function getCard(item) {
-  const newCard = template.content.cloneNode(true)
-  const imgEl = newCard.querySelector('.photo-card__image')
-  const nameEl = newCard.querySelector('.photo-card__name')
+  const newCard = template.content.cloneNode(true);
+  const imgEl = newCard.querySelector('.photo-card__image');
+  const nameEl = newCard.querySelector('.photo-card__name');
 
-  imgEl.src = item.link
-  imgEl.alt = item.name
-  nameEl.textContent = item.name
-  return newCard
+  imgEl.src = item.link;
+  imgEl.alt = item.name;
+  nameEl.textContent = item.name;
+  return newCard;
 }
 
+function formCardHandler (evt) {
+  evt.preventDefault();
+  const nameCard = siteInput.value;
+  const linkCard = linkInput.value;
+  const photoCard = getCard({name: nameCard, link: linkCard});
+  photoCardsContainer.prepend(photoCard);
+  siteInput.value = '';
+  linkInput.value = '';
+  togglePopup(popupPhotoCard);
+}
+
+function renderCards() {
+  const cards = initialCards.map(getCard);
+  photoCardsContainer.append(...cards);
+}
 
 renderCards();
 openPopupProfileBtn.addEventListener('click',() => {
@@ -97,4 +113,5 @@ closePopupPhotoCardBtn.addEventListener('click',() => {
 //closePopupPhotoBtn.addEventListener('click',() => {
 //  togglePopup(popupPhoto)
 //});
-formElementProfile.addEventListener('submit', formSubmitHandler)
+formElementProfile.addEventListener('submit', formSubmitHandler);
+formElementPhotoCard.addEventListener('submit', formCardHandler);
