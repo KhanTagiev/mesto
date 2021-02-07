@@ -24,54 +24,6 @@
 </section>
 <section class="photo-cards">
 <ul class="photo-cards__container">
-  <li class="photo-card">
-    <img class="photo-card__image" src="./images/vladimir.jpg" alt="Владимир">
-    <div class="photo-card__info">
-      <h2 class="photo-card__name">Владимир</h2>
-      <button class="photo-card__btn photo-card__btn_like" type="button" aria-label="Поставить лайк"></button>
-    </div>
-    <button class="photo-card__btn photo-card__btn_delete" type="button" aria-label="Удалить фотографию"></button>
-  </li>
-  <li class="photo-card">
-    <img class="photo-card__image" src="./images/ivanovo.jpg" alt="Иваново">
-    <div class="photo-card__info">
-      <h2 class="photo-card__name">Иваново</h2>
-      <button class="photo-card__btn photo-card__btn_like" type="button" aria-label="Поставить лайк"></button>
-    </div>
-    <button class="photo-card__btn photo-card__btn_delete" type="button" aria-label="Удалить фотографию"></button>
-  </li>
-  <li class="photo-card">
-    <img class="photo-card__image" src="./images/velikiy-novgorod.jpg" alt="Великий Новгород">
-    <div class="photo-card__info">
-      <h2 class="photo-card__name">Великий Новгород</h2>
-      <button class="photo-card__btn photo-card__btn_like" type="button" aria-label="Поставить лайк"></button>
-    </div>
-    <button class="photo-card__btn photo-card__btn_delete" type="button" aria-label="Удалить фотографию"></button>
-  </li>
-  <li class="photo-card">
-    <img class="photo-card__image" src="./images/kostroma.jpg" alt="Кострома">
-    <div class="photo-card__info">
-      <h2 class="photo-card__name">Кострома</h2>
-      <button class="photo-card__btn photo-card__btn_like" type="button" aria-label="Поставить лайк"></button>
-    </div>
-    <button class="photo-card__btn photo-card__btn_delete" type="button" aria-label="Удалить фотографию"></button>
-  </li>
-  <li class="photo-card">
-    <img class="photo-card__image" src="./images/volgograd.jpg" alt="Волгоград">
-    <div class="photo-card__info">
-      <h2 class="photo-card__name">Волгоград</h2>
-      <button class="photo-card__btn photo-card__btn_like" type="button" aria-label="Поставить лайк"></button>
-    </div>
-    <button class="photo-card__btn photo-card__btn_delete" type="button" aria-label="Удалить фотографию"></button>
-  </li>
-  <li class="photo-card">
-    <img class="photo-card__image" src="./images/krasnaya-polyana.jpg" alt="Красная Поляна">
-    <div class="photo-card__info">
-      <h2 class="photo-card__name">Красная Поляна</h2>
-      <button class="photo-card__btn photo-card__btn_like" type="button" aria-label="Поставить лайк"></button>
-    </div>
-    <button class="photo-card__btn photo-card__btn_delete" type="button" aria-label="Удалить фотографию"></button>
-  </li>
 </ul>
 </section>
 </main>
@@ -104,6 +56,18 @@
 <footer class="footer">
   <p class="footer__copyright">&#169; 2021. Mesto Russia</p>
 </footer>
+<template class="template">
+  <li>
+    <figure class="photo-card">
+      <img class="photo-card__image" src="" alt="">
+      <figcaption class="photo-card__info">
+        <h2 class="photo-card__name"></h2>
+        <button class="photo-card__btn photo-card__btn_like" type="button" aria-label="Поставить лайк"></button>
+      </figcaption>
+      <button class="photo-card__btn photo-card__btn_delete" type="button" aria-label="Удалить фотографию"></button>
+    </figure>
+  </li>
+</template>
 <script src="./scripts/index.js"></script>
 </body>
 </html>
