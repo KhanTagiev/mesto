@@ -1,0 +1,14 @@
+.form__btn_save {
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media (max-width: 600px) {
+  .form__btn_save {
+    font-size: 14px;
+    line-height: 17px;
+    height: 46px;
+  }
+}

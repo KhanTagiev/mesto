@@ -24,68 +24,61 @@
 </section>
 <section class="photo-cards">
 <ul class="photo-cards__container">
-  <li class="photo-card">
-    <img class="photo-card__image" src="./images/vladimir.jpg" alt="Владимир">
-    <div class="photo-card__info">
-      <h2 class="photo-card__name">Владимир</h2>
-      <button class="photo-card__like-btn" type="button" aria-label="Поставить лайк"></button>
-    </div>
-    <button class="photo-card__delete-btn" type="button" aria-label="Удалить фотографию"></button>
-  </li>
-  <li class="photo-card">
-    <img class="photo-card__image" src="./images/ivanovo.jpg" alt="Иваново">
-    <div class="photo-card__info">
-      <h2 class="photo-card__name">Иваново</h2>
-      <button class="photo-card__like-btn" type="button" aria-label="Поставить лайк"></button>
-    </div>
-  </li>
-  <li class="photo-card">
-    <img class="photo-card__image" src="./images/velikiy-novgorod.jpg" alt="Великий Новгород">
-    <div class="photo-card__info">
-      <h2 class="photo-card__name">Великий Новгород</h2>
-      <button class="photo-card__like-btn" type="button" aria-label="Поставить лайк"></button>
-    </div>
-  </li>
-  <li class="photo-card">
-    <img class="photo-card__image" src="./images/kostroma.jpg" alt="Кострома">
-    <div class="photo-card__info">
-      <h2 class="photo-card__name">Кострома</h2>
-      <button class="photo-card__like-btn" type="button" aria-label="Поставить лайк"></button>
-    </div>
-  </li>
-  <li class="photo-card">
-    <img class="photo-card__image" src="./images/volgograd.jpg" alt="Волгоград">
-    <div class="photo-card__info">
-      <h2 class="photo-card__name">Волгоград</h2>
-      <button class="photo-card__like-btn" type="button" aria-label="Поставить лайк"></button>
-    </div>
-  </li>
-  <li class="photo-card">
-    <img class="photo-card__image" src="./images/krasnaya-polyana.jpg" alt="Красная Поляна">
-    <div class="photo-card__info">
-      <h2 class="photo-card__name">Красная Поляна</h2>
-      <button class="photo-card__like-btn" type="button" aria-label="Поставить лайк"></button>
-    </div>
-  </li>
 </ul>
 </section>
 </main>
-<section class="popup">
+<section class="popup popup_profile">
   <div class="popup__container">
     <h2 class="popup__title">Редактировать профиль</h2>
     <form class="form" name="profile-info">
-      <fieldset class="form__profile">
+      <fieldset class="form__fieldset form__fieldset_profile">
         <input class="form__input form__input_name" type="text" value="Жак-Ив Кусто" placeholder="Имя" name="profile-name">
         <input class="form__input form__input_job" type="text" value="Исследователь океана" placeholder="Занятие" name="profile-job">
-        <button class="form__save-btn"  type="submit" aria-label="Сохранить изменения в профиле">Сохранить</button>
+        <button class="form__btn form__btn_save"  type="submit" aria-label="Сохранить изменения в профиле">Сохранить</button>
       </fieldset>
     </form>
-    <button class="popup__close-btn" type="button" aria-label="Закрыть окно редактирования"></button>
+    <button class="popup__btn popup__btn_close" type="button" aria-label="Закрыть окно редактирования"></button>
+  </div>
+</section>
+<section class="popup popup_photo-card">
+  <div class="popup__container">
+    <h2 class="popup__title">Новое место</h2>
+    <form class="form" name="photo-card">
+      <fieldset class="form__fieldset form__fieldset_photo-card">
+        <input class="form__input form__input_site" type="text" value="" placeholder="Название" name="photo-card-site">
+        <input class="form__input form__input_url" type="text" value="" placeholder="Ссылка на картинку" name="photo-card-url">
+        <button class="form__btn form__btn_save"  type="submit" aria-label="Создатьпш">Создать</button>
+      </fieldset>
+    </form>
+    <button class="popup__btn popup__btn_close" type="button" aria-label="Закрыть окно добавления места"></button>
+  </div>
+</section>
+<section class="popup popup_photo-view">
+  <div class="popup__container popup__container_photo-view">
+    <figure class="photo-view photo-view__container">
+      <img src="" alt="" class="photo-view__image">
+      <figcaption class="photo-view__info">
+        <h2 class="photo-view__name"></h2>
+      </figcaption>
+    </figure>
+    <button class="popup__btn popup__btn_close" type="button" aria-label="Закрыть окно добавления места"></button>
   </div>
 </section>
 <footer class="footer">
   <p class="footer__copyright">&#169; 2021. Mesto Russia</p>
 </footer>
+<template class="template">
+  <li class="photo-card">
+    <figure class="photo-card__container">
+      <img class="photo-card__image" src="" alt="">
+      <figcaption class="photo-card__info">
+        <h2 class="photo-card__name"></h2>
+        <button class="photo-card__btn photo-card__btn_like" type="button" aria-label="Поставить лайк"></button>
+      </figcaption>
+      <button class="photo-card__btn photo-card__btn_delete" type="button" aria-label="Удалить фотографию"></button>
+    </figure>
+  </li>
+</template>
 <script src="./scripts/index.js"></script>
 </body>
 </html>
