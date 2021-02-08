@@ -70,27 +70,47 @@ function getCard(item) {
   const newCard = template.content.cloneNode(true);
   const imgEl = newCard.querySelector('.photo-card__image');
   const nameEl = newCard.querySelector('.photo-card__name');
+  const deleteCardBtn = newCard.querySelector('.photo-card__btn_delete');
+  const likeCardBtn = newCard.querySelector('.photo-card__btn_like');
 
   imgEl.src = item.link;
   imgEl.alt = item.name;
   nameEl.textContent = item.name;
+
+  deleteCardBtn.addEventListener('click', deleteCard);
+  likeCardBtn.addEventListener('click', likeCard)
   return newCard;
 }
 
 function formCardHandler (evt) {
   evt.preventDefault();
+
   const nameCard = siteInput.value;
   const linkCard = linkInput.value;
   const photoCard = getCard({name: nameCard, link: linkCard});
+
   photoCardsContainer.prepend(photoCard);
   siteInput.value = '';
   linkInput.value = '';
+
   togglePopup(popupPhotoCard);
 }
 
 function renderCards() {
   const cards = initialCards.map(getCard);
   photoCardsContainer.append(...cards);
+}
+
+function deleteCard(event) {
+  const targetEl = event.target;
+  const targetItem = targetEl.closest('.photo-card')
+  targetItem.remove()
+  console.log(targetEl)
+}
+
+function likeCard(event) {
+ const targetEl = event.target;
+ targetEl.classList.toggle('photo-card__btn_like_active');
 }
 
 renderCards();
