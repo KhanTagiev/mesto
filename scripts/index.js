@@ -83,12 +83,10 @@ function getCard(item) {
   deleteCardBtn.addEventListener('click', deleteCard);
   likeCardBtn.addEventListener('click', likeCard);
   openPopupPhotoViewBtn.addEventListener('click',() => {
-  photoViewName.textContent = item.name;
-  photoViewImage.src = item.link;
-  photoViewImage.alt = item.name;
-  });
-  openPopupPhotoViewBtn.addEventListener('click',() => {
     togglePopup(popupPhotoView)
+    photoViewName.textContent = item.name;
+    photoViewImage.src = item.link;
+    photoViewImage.alt = item.name;
   });
 
   return newCard;
@@ -134,8 +132,8 @@ renderCards();
 
 openPopupProfileBtn.addEventListener('click',() => {
   togglePopup(popupProfile)
+  upProfileInfo()
 });
-openPopupProfileBtn.addEventListener('click', upProfileInfo);
 openPopupPhotoCardBtn.addEventListener('click',() => {
   togglePopup(popupPhotoCard)
 });
