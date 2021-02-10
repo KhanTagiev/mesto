@@ -45,7 +45,6 @@
 @import url('../blocks/form/__btn/form__btn.css');
 @import url('../blocks/form/__btn/_save/form__btn_save.css');
 @import url('../blocks/photo-view/photo-view.css');
-@import url('../blocks/photo-view/__container/photo-view__container.css');
 @import url('../blocks/photo-view/__image/photo-view__image.css');
 @import url('../blocks/photo-view/__info/photo-view__info.css');
 @import url('../blocks/photo-view/__name/photo-view__name.css');
