@@ -25,32 +25,32 @@ const initialCards = [
   }
 ];
 
-let popup = document.querySelector('.popup')
-let openPopupProfileBtn = document.querySelector('.profile__btn_edit')
-let openPopupPhotoCardBtn = document.querySelector('.profile__btn_add')
+const popup = document.querySelector('.popup')
+const openPopupProfileBtn = document.querySelector('.profile__btn_edit')
+const openPopupPhotoCardBtn = document.querySelector('.profile__btn_add')
 
-let popupProfile = document.querySelector('.popup_profile')
-let closePopupProfileBtn = popupProfile.querySelector('.popup__btn_close')
-let formElementProfile = popupProfile.querySelector('.form')
-let nameInput = formElementProfile.querySelector('.form__input_name')
-let jobInput = formElementProfile.querySelector('.form__input_job')
+const popupProfile = document.querySelector('.popup_profile')
+const closePopupProfileBtn = popupProfile.querySelector('.popup__btn_close')
+const formElementProfile = popupProfile.querySelector('.form')
+const nameInput = formElementProfile.querySelector('.form__input_name')
+const jobInput = formElementProfile.querySelector('.form__input_job')
 
-let popupPhotoCard = document.querySelector('.popup_photo-card')
-let closePopupPhotoCardBtn = popupPhotoCard.querySelector('.popup__btn_close')
-let formElementPhotoCard = popupPhotoCard.querySelector('.form')
-let siteInput = formElementPhotoCard.querySelector('.form__input_site')
-let linkInput = formElementPhotoCard.querySelector('.form__input_url')
+const popupPhotoCard = document.querySelector('.popup_photo-card')
+const closePopupPhotoCardBtn = popupPhotoCard.querySelector('.popup__btn_close')
+const formElementPhotoCard = popupPhotoCard.querySelector('.form')
+const siteInput = formElementPhotoCard.querySelector('.form__input_site')
+const linkInput = formElementPhotoCard.querySelector('.form__input_url')
 
-let popupPhotoView = document.querySelector('.popup_photo-view')
-let photoViewImage = popupPhotoView.querySelector('.photo-view__image')
-let photoViewName = popupPhotoView.querySelector('.photo-view__name')
-let closePopupPhotoBtn = popupPhotoView.querySelector('.popup__btn_close')
+const popupPhotoView = document.querySelector('.popup_photo-view')
+const photoViewImage = popupPhotoView.querySelector('.photo-view__image')
+const photoViewName = popupPhotoView.querySelector('.photo-view__name')
+const closePopupPhotoBtn = popupPhotoView.querySelector('.popup__btn_close')
 
-let profile = document.querySelector('.profile')
-let nameProfile = profile.querySelector('.profile__name')
-let jobProfile = profile.querySelector('.profile__job')
-let photoCardsContainer = document.querySelector('.photo-cards__container')
-let template = document.querySelector('.template')
+const profile = document.querySelector('.profile')
+const nameProfile = profile.querySelector('.profile__name')
+const jobProfile = profile.querySelector('.profile__job')
+const photoCardsContainer = document.querySelector('.photo-cards__container')
+const template = document.querySelector('.template')
 
 function togglePopup (pop) {
   pop.classList.toggle('popup_opened');
@@ -65,7 +65,8 @@ function formSubmitHandler (evt) {
     evt.preventDefault();
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
-    togglePopup(popupProfile)
+
+    togglePopup(popupProfile);
 }
 
 function getCard(item) {
@@ -83,22 +84,22 @@ function getCard(item) {
   deleteCardBtn.addEventListener('click', deleteCard);
   likeCardBtn.addEventListener('click', likeCard);
   openPopupPhotoViewBtn.addEventListener('click',() => {
-    togglePopup(popupPhotoView)
     photoViewName.textContent = item.name;
     photoViewImage.src = item.link;
     photoViewImage.alt = item.name;
+
+    togglePopup(popupPhotoView);
   });
 
   return newCard;
 }
 
 function formCardHandler (evt) {
-  evt.preventDefault();
-
   const nameCard = siteInput.value;
   const linkCard = linkInput.value;
   const photoCard = getCard({name: nameCard, link: linkCard});
 
+  evt.preventDefault();
   photoCardsContainer.prepend(photoCard);
   siteInput.value = '';
   linkInput.value = '';
@@ -108,44 +109,40 @@ function formCardHandler (evt) {
 
 function renderCards() {
   const cards = initialCards.map(getCard);
+
   photoCardsContainer.append(...cards);
 }
 
 function deleteCard(event) {
   const targetEl = event.target;
   const targetItem = targetEl.closest('.photo-card');
+
   targetItem.remove();
 }
 
 function likeCard(event) {
- const targetEl = event.target;
- targetEl.classList.toggle('photo-card__btn_like_active');
-}
+  const targetEl = event.target;
 
-function cleanPopupPhotoView() {
-  photoViewName.textContent = '';
-  photoViewImage.src = '';
-  photoViewImage.alt = '';
+  targetEl.classList.toggle('photo-card__btn_like_active');
 }
 
 renderCards();
 
 openPopupProfileBtn.addEventListener('click',() => {
-  togglePopup(popupProfile)
-  upProfileInfo()
+  upProfileInfo();
+  togglePopup(popupProfile);
 });
 openPopupPhotoCardBtn.addEventListener('click',() => {
-  togglePopup(popupPhotoCard)
+  togglePopup(popupPhotoCard);
 });
 closePopupProfileBtn.addEventListener('click',() => {
-  togglePopup(popupProfile)
+  togglePopup(popupProfile);
 });
 closePopupPhotoCardBtn.addEventListener('click',() => {
-  togglePopup(popupPhotoCard)
+  togglePopup(popupPhotoCard);
 });
 closePopupPhotoBtn.addEventListener('click',() => {
-  togglePopup(popupPhotoView)
+  togglePopup(popupPhotoView);
 });
-closePopupPhotoBtn.addEventListener('click',cleanPopupPhotoView);
 formElementProfile.addEventListener('submit', formSubmitHandler);
 formElementPhotoCard.addEventListener('submit', formCardHandler);
