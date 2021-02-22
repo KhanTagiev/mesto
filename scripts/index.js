@@ -25,17 +25,17 @@ const initialCards = [
   }
 ];
 
-const popup = document.querySelector('.popup')
-const openPopupProfileBtn = document.querySelector('.profile__btn_edit')
-const openPopupPhotoCardBtn = document.querySelector('.profile__btn_add')
+
 
 const popupProfile = document.querySelector('.popup_profile')
+const openPopupProfileBtn = document.querySelector('.profile__btn_edit')
 const closePopupProfileBtn = popupProfile.querySelector('.popup__btn_close')
 const formElementProfile = popupProfile.querySelector('.form')
 const nameInput = formElementProfile.querySelector('.form__input_name')
 const jobInput = formElementProfile.querySelector('.form__input_job')
 
 const popupPhotoCard = document.querySelector('.popup_photo-card')
+const openPopupPhotoCardBtn = document.querySelector('.profile__btn_add')
 const closePopupPhotoCardBtn = popupPhotoCard.querySelector('.popup__btn_close')
 const formElementPhotoCard = popupPhotoCard.querySelector('.form')
 const siteInput = formElementPhotoCard.querySelector('.form__input_site')
@@ -52,8 +52,12 @@ const jobProfile = profile.querySelector('.profile__job')
 const photoCardsContainer = document.querySelector('.photo-cards__container')
 const template = document.querySelector('.template')
 
-function togglePopup (pop) {
-  pop.classList.toggle('popup_opened');
+function openPopup (popupElement) {
+  popupElement.classList.add('popup_opened');
+}
+
+function closePopup (popupElement) {
+  popupElement.classList.remove('popup_opened');
 }
 
 function upProfileInfo() {
@@ -61,12 +65,12 @@ function upProfileInfo() {
   jobInput.value = jobProfile.textContent;
 }
 
-function formSubmitHandler (evt) {
+function formSubmitProfileHandler (evt) {
     evt.preventDefault();
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
 
-    togglePopup(popupProfile);
+    closePopup(popupProfile);
 }
 
 function getCard(item) {
@@ -75,7 +79,6 @@ function getCard(item) {
   const nameEl = newCard.querySelector('.photo-card__name');
   const deleteCardBtn = newCard.querySelector('.photo-card__btn_delete');
   const likeCardBtn = newCard.querySelector('.photo-card__btn_like');
-  const openPopupPhotoViewBtn = newCard.querySelector('.photo-card__image');
 
   imgEl.src = item.link;
   imgEl.alt = item.name;
@@ -83,28 +86,29 @@ function getCard(item) {
 
   deleteCardBtn.addEventListener('click', deleteCard);
   likeCardBtn.addEventListener('click', likeCard);
-  openPopupPhotoViewBtn.addEventListener('click',() => {
+  imgEl.addEventListener('click',() => {
     photoViewName.textContent = item.name;
     photoViewImage.src = item.link;
     photoViewImage.alt = item.name;
 
-    togglePopup(popupPhotoView);
+    openPopup(popupPhotoView);
   });
 
   return newCard;
 }
 
-function formCardHandler (evt) {
+function formSumbitPhotoCardHandler (evt) {
+  evt.preventDefault();
+
   const nameCard = siteInput.value;
   const linkCard = linkInput.value;
   const photoCard = getCard({name: nameCard, link: linkCard});
 
-  evt.preventDefault();
   photoCardsContainer.prepend(photoCard);
   siteInput.value = '';
   linkInput.value = '';
 
-  togglePopup(popupPhotoCard);
+  closePopup(popupPhotoCard);
 }
 
 function renderCards() {
@@ -130,19 +134,19 @@ renderCards();
 
 openPopupProfileBtn.addEventListener('click',() => {
   upProfileInfo();
-  togglePopup(popupProfile);
+  openPopup(popupProfile);
 });
 openPopupPhotoCardBtn.addEventListener('click',() => {
-  togglePopup(popupPhotoCard);
+  openPopup(popupPhotoCard);
 });
 closePopupProfileBtn.addEventListener('click',() => {
-  togglePopup(popupProfile);
+  closePopup(popupProfile);
 });
 closePopupPhotoCardBtn.addEventListener('click',() => {
-  togglePopup(popupPhotoCard);
+  closePopup(popupPhotoCard);
 });
 closePopupPhotoBtn.addEventListener('click',() => {
-  togglePopup(popupPhotoView);
+  closePopup(popupPhotoView);
 });
-formElementProfile.addEventListener('submit', formSubmitHandler);
-formElementPhotoCard.addEventListener('submit', formCardHandler);
+formElementProfile.addEventListener('submit', formSubmitProfileHandler);
+formElementPhotoCard.addEventListener('submit', formSumbitPhotoCardHandler);
