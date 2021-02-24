@@ -63,6 +63,8 @@ function closePopup (popupElement) {
 function upProfileInfo() {
   nameInput.value = nameProfile.textContent
   jobInput.value = jobProfile.textContent;
+  nameInput.dispatchEvent(new Event('input'));
+  jobInput.dispatchEvent(new Event('input'));
 }
 
 function formSubmitProfileHandler (evt) {
@@ -107,7 +109,8 @@ function formSumbitPhotoCardHandler (evt) {
   photoCardsContainer.prepend(photoCard);
   siteInput.value = '';
   linkInput.value = '';
-
+  siteInput.dispatchEvent(new Event('input'));
+  linkInput.dispatchEvent(new Event('input'));
   closePopup(popupPhotoCard);
 }
 

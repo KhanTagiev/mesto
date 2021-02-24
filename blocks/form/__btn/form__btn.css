@@ -5,6 +5,7 @@
   transition: opacity .8s ease 0s;
   border: none;
   padding: 0;
+  margin-top: 18px;
 }
 
 .form__btn:hover {

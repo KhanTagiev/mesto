@@ -1,15 +1,11 @@
 .form__input {
   width: 100%;
   padding: 0;
+  padding-bottom: 7px;
+  margin-bottom: 30px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
-  margin-bottom: 30px;
   font-size: 14px;
   line-height: 17px;
-  padding-bottom: 7px;
   box-sizing: border-box;
-}
-
-.form__input:last-of-type {
-  margin-bottom: 48px;
 }
