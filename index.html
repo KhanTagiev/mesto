@@ -30,17 +30,11 @@
 <section class="popup popup_profile">
   <div class="popup__container">
     <h2 class="popup__title">Редактировать профиль</h2>
-    <form class="form" name="profile-info" novalidate>
+    <form class="form" name="profile-info">
       <fieldset class="form__fieldset form__fieldset_profile">
-        <label class="form__label">
-          <input class="form__input form__input_name" type="text" value="Жак-Ив Кусто" placeholder="Имя" name="profile-name" minlength="2" maxlength="40" required>
-          <span class="form__input-error profile-name-error"></span>
-        </label>
-        <label class="form__label">
-          <input class="form__input form__input_job" type="text" value="Исследователь океана" placeholder="О себе" name="profile-job" minlength="2" maxlength="200" required>
-          <span class="form__input-error profile-job-error"></span>
-        </label>
-          <button class="form__btn form__btn_save"  type="submit" aria-label="Сохранить изменения в профиле">Сохранить</button>
+        <input class="form__input form__input_name" type="text" value="Жак-Ив Кусто" placeholder="Имя" name="profile-name">
+        <input class="form__input form__input_job" type="text" value="Исследователь океана" placeholder="Занятие" name="profile-job">
+        <button class="form__btn form__btn_save"  type="submit" aria-label="Сохранить изменения в профиле">Сохранить</button>
       </fieldset>
     </form>
     <button class="popup__btn popup__btn_close" type="button" aria-label="Закрыть окно редактирования"></button>
@@ -49,20 +43,14 @@
 <section class="popup popup_photo-card">
   <div class="popup__container">
     <h2 class="popup__title">Новое место</h2>
-    <form class="form" name="photo-card" novalidate>
+    <form class="form" name="photo-card">
       <fieldset class="form__fieldset form__fieldset_photo-card">
-        <label class="form__label">
-          <input class="form__input form__input_site" type="text" value="" placeholder="Название" name="photo-card-site" minlength="2" maxlength="30" required>
-          <span class="form__input-error photo-card-site-error"></span>
-        </label>
-        <label class="form__label">
-          <input class="form__input form__input_url" type="url" value="" placeholder="Ссылка на картинку" name="photo-card-url" required>
-          <span class="form__input-error photo-card-url-error"></span>
-        </label>
-        <button class="form__btn form__btn_save"  type="submit" aria-label="Создать">Создать</button>
+        <input class="form__input form__input_site" type="text" value="" placeholder="Название" name="photo-card-site">
+        <input class="form__input form__input_url" type="url" value="" placeholder="Ссылка на картинку" name="photo-card-url">
+        <button class="form__btn form__btn_save"  type="submit" aria-label="Создатьпш">Создать</button>
       </fieldset>
     </form>
-    <button class="popup__btn popup__btn_close" type="button" aria-label="Закрыть окно просмотра места"></button>
+    <button class="popup__btn popup__btn_close" type="button" aria-label="Закрыть окно добавления места"></button>
   </div>
 </section>
 <section class="popup popup_photo-view">
@@ -92,6 +80,5 @@
   </li>
 </template>
 <script src="./scripts/index.js"></script>
-<script src="./scripts/validate.js"></script>
 </body>
 </html>
