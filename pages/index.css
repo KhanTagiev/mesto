@@ -37,17 +37,13 @@
 @import url('../blocks/form/__fieldset/form__fieldset.css');
 @import url('../blocks/form/__fieldset/_profile/form__profile.css');
 @import url('../blocks/form/__fieldset/_photo-card/form__fieldset_photo-card.css');
-@import url('../blocks/form/__label/form__label.css');
 @import url('../blocks/form/__input/form__input.css');
 @import url('../blocks/form/__input/_name/form__input_name.css');
 @import url('../blocks/form/__input/_job/form__input_job.css');
 @import url('../blocks/form/__input/_site/form__input_site.css');
 @import url('../blocks/form/__input/_url/form__input_url.css');
-@import url('../blocks/form/__input-error/form__input-error.css');
-@import url('../blocks/form/__input/_type/_error/form__input_type_error.css');
 @import url('../blocks/form/__btn/form__btn.css');
 @import url('../blocks/form/__btn/_save/form__btn_save.css');
-@import url('../blocks/form/__btn/_disabled/form__btn_disabled.css');
 @import url('../blocks/photo-view/photo-view.css');
 @import url('../blocks/photo-view/__image/photo-view__image.css');
 @import url('../blocks/photo-view/__info/photo-view__info.css');
