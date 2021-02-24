@@ -25,18 +25,17 @@ const initialCards = [
   }
 ];
 
-const popup = document.querySelector('.popup')
-const openPopupProfileBtn = document.querySelector('.profile__btn_edit')
-const openPopupPhotoCardBtn = document.querySelector('.profile__btn_add')
+
 
 const popupProfile = document.querySelector('.popup_profile')
-const closePopupProfileBtn = popupProfile.querySelector('.popup__btn_close')
+const openPopupProfileBtn = document.querySelector('.profile__btn_edit')
+
 const formElementProfile = popupProfile.querySelector('.form')
 const nameInput = formElementProfile.querySelector('.form__input_name')
 const jobInput = formElementProfile.querySelector('.form__input_job')
 
 const popupPhotoCard = document.querySelector('.popup_photo-card')
-const closePopupPhotoCardBtn = popupPhotoCard.querySelector('.popup__btn_close')
+const openPopupPhotoCardBtn = document.querySelector('.profile__btn_add')
 const formElementPhotoCard = popupPhotoCard.querySelector('.form')
 const siteInput = formElementPhotoCard.querySelector('.form__input_site')
 const linkInput = formElementPhotoCard.querySelector('.form__input_url')
@@ -44,7 +43,6 @@ const linkInput = formElementPhotoCard.querySelector('.form__input_url')
 const popupPhotoView = document.querySelector('.popup_photo-view')
 const photoViewImage = popupPhotoView.querySelector('.photo-view__image')
 const photoViewName = popupPhotoView.querySelector('.photo-view__name')
-const closePopupPhotoBtn = popupPhotoView.querySelector('.popup__btn_close')
 
 const profile = document.querySelector('.profile')
 const nameProfile = profile.querySelector('.profile__name')
@@ -88,11 +86,13 @@ function handlePopupOpen (popupElement) {
 }
 
 function upProfileInfo() {
-  nameInput.value = nameProfile.textContent
+  nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
+  nameInput.dispatchEvent(new Event('input'));
+  jobInput.dispatchEvent(new Event('input'));
 }
 
-function formSubmitHandler (evt) {
+function formSubmitProfileHandler (evt) {
     evt.preventDefault();
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
@@ -106,7 +106,6 @@ function getCard(item) {
   const nameEl = newCard.querySelector('.photo-card__name');
   const deleteCardBtn = newCard.querySelector('.photo-card__btn_delete');
   const likeCardBtn = newCard.querySelector('.photo-card__btn_like');
-  const openPopupPhotoViewBtn = newCard.querySelector('.photo-card__image');
 
   imgEl.src = item.link;
   imgEl.alt = item.name;
@@ -114,28 +113,30 @@ function getCard(item) {
 
   deleteCardBtn.addEventListener('click', deleteCard);
   likeCardBtn.addEventListener('click', likeCard);
-  openPopupPhotoViewBtn.addEventListener('click',() => {
+  imgEl.addEventListener('click',() => {
     photoViewName.textContent = item.name;
     photoViewImage.src = item.link;
     photoViewImage.alt = item.name;
 
-    togglePopup(popupPhotoView);
+    handlePopupOpen(popupPhotoView);
   });
 
   return newCard;
 }
 
-function formCardHandler (evt) {
+function formSumbitPhotoCardHandler (evt) {
+  evt.preventDefault();
+
   const nameCard = siteInput.value;
   const linkCard = linkInput.value;
   const photoCard = getCard({name: nameCard, link: linkCard});
 
-  evt.preventDefault();
   photoCardsContainer.prepend(photoCard);
   siteInput.value = '';
   linkInput.value = '';
-
-  togglePopup(popupPhotoCard);
+  siteInput.dispatchEvent(new Event('input'));
+  linkInput.dispatchEvent(new Event('input'));
+  closePopup(popupPhotoCard);
 }
 
 function renderCards() {
@@ -161,19 +162,11 @@ renderCards();
 
 openPopupProfileBtn.addEventListener('click',() => {
   upProfileInfo();
-  togglePopup(popupProfile);
+  handlePopupOpen(popupProfile);
 });
 openPopupPhotoCardBtn.addEventListener('click',() => {
-  togglePopup(popupPhotoCard);
+  handlePopupOpen(popupPhotoCard);
 });
-closePopupProfileBtn.addEventListener('click',() => {
-  togglePopup(popupProfile);
-});
-closePopupPhotoCardBtn.addEventListener('click',() => {
-  togglePopup(popupPhotoCard);
-});
-closePopupPhotoBtn.addEventListener('click',() => {
-  togglePopup(popupPhotoView);
-});
-formElementProfile.addEventListener('submit', formSubmitHandler);
-formElementPhotoCard.addEventListener('submit', formCardHandler);
+
+formElementProfile.addEventListener('submit', formSubmitProfileHandler);
+formElementPhotoCard.addEventListener('submit', formSumbitPhotoCardHandler);
