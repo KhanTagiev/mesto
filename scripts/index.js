@@ -81,7 +81,7 @@ function handlePopupOpen (popupElement) {
 
   popupElement.addEventListener('click', addPopupClickListener);
   document.addEventListener('keydown', addPopupKeyDownListener);
-  
+
   openPopup(popupElement);
 }
 
@@ -97,7 +97,7 @@ function formSubmitProfileHandler (evt) {
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
 
-    handlePopupClose(popupProfile);
+    closePopup(popupProfile);
 }
 
 function getCard(item) {
