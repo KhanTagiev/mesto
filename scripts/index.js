@@ -50,6 +50,14 @@ const jobProfile = profile.querySelector('.profile__job')
 const photoCardsContainer = document.querySelector('.photo-cards__container')
 const template = document.querySelector('.template')
 
+const validateSelectors = {
+  inputSelector:'.form__input',
+  inputErrorSelector: 'form__input_type_error',
+  spanErrorSelector: 'form__input-error_active',
+  buttonSelector: '.form__btn',
+  buttonDisabledClass: 'form__btn_disabled',
+}
+
 function openPopup (popupElement) {
   popupElement.classList.add('popup_opened');
 }
@@ -85,11 +93,16 @@ function handlePopupOpen (popupElement) {
   openPopup(popupElement);
 }
 
-function upProfileInfo() {
+function upProfileInfo(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll(validateSelectors.inputSelector));
+  const buttonElement = formElement.querySelector(validateSelectors.buttonSelector);
+
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-  nameInput.dispatchEvent(new Event('input'));
-  jobInput.dispatchEvent(new Event('input'));
+
+  checkInputValidity(formElement, nameInput, validateSelectors.inputErrorSelector, validateSelectors.spanErrorSelector);
+  checkInputValidity(formElement, jobInput, validateSelectors.inputErrorSelector, validateSelectors.spanErrorSelector);
+  toggleButtonState(inputList, buttonElement, validateSelectors.buttonDisabledClass);
 }
 
 function formSubmitProfileHandler (evt) {
@@ -132,8 +145,7 @@ function formSumbitPhotoCardHandler (evt) {
   const photoCard = getCard({name: nameCard, link: linkCard});
 
   photoCardsContainer.prepend(photoCard);
-  siteInput.value = '';
-  linkInput.value = '';
+  formElementPhotoCard.reset()
   siteInput.dispatchEvent(new Event('input'));
   linkInput.dispatchEvent(new Event('input'));
   closePopup(popupPhotoCard);
@@ -161,12 +173,21 @@ function likeCard(event) {
 renderCards();
 
 openPopupProfileBtn.addEventListener('click',() => {
-  upProfileInfo();
+  upProfileInfo(formElementProfile);
   handlePopupOpen(popupProfile);
 });
 openPopupPhotoCardBtn.addEventListener('click',() => {
+  const inputPhotoCardList = Array.from(formElementPhotoCard.querySelectorAll('.form__input'));
+
+  inputPhotoCardList.forEach((inputElement) => {
+    if (!inputElement.value)  {
+      hideInputError(formElementPhotoCard,inputElement , validateSelectors.inputErrorSelector, validateSelectors.spanErrorSelector);
+    }
+  });
+
   handlePopupOpen(popupPhotoCard);
 });
+
 
 formElementProfile.addEventListener('submit', formSubmitProfileHandler);
 formElementPhotoCard.addEventListener('submit', formSumbitPhotoCardHandler);
