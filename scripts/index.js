@@ -25,8 +25,6 @@ const initialCards = [
   }
 ];
 
-
-
 const popupProfile = document.querySelector('.popup_profile')
 const openPopupProfileBtn = document.querySelector('.profile__btn_edit')
 
@@ -40,15 +38,10 @@ const formElementPhotoCard = popupPhotoCard.querySelector('.form')
 const siteInput = formElementPhotoCard.querySelector('.form__input_site')
 const linkInput = formElementPhotoCard.querySelector('.form__input_url')
 
-const popupPhotoView = document.querySelector('.popup_photo-view')
-const photoViewImage = popupPhotoView.querySelector('.photo-view__image')
-const photoViewName = popupPhotoView.querySelector('.photo-view__name')
-
 const profile = document.querySelector('.profile')
 const nameProfile = profile.querySelector('.profile__name')
 const jobProfile = profile.querySelector('.profile__job')
 const photoCardsContainer = document.querySelector('.photo-cards__container')
-const template = document.querySelector('.template')
 
 const validateSelectors = {
   inputSelector:'.form__input',
@@ -57,6 +50,7 @@ const validateSelectors = {
   buttonSelector: '.form__btn',
   buttonDisabledClass: 'form__btn_disabled',
 }
+
 function addPopupCloseClickListener(evt) {
   if (evt.target.classList.contains('popup__btn_close') || evt.target.classList.contains('popup') ) {
     const popupOpened = evt.currentTarget
@@ -71,7 +65,7 @@ function addPopupCloseKeyDownListener(evt) {
   }
 }
 
-function openPopup (popupElement) {
+export default function openPopup (popupElement) {
   popupElement.classList.add('popup_opened');
 
   popupElement.addEventListener('click', addPopupCloseClickListener);
@@ -105,64 +99,27 @@ function formSubmitProfileHandler (evt) {
     closePopup(popupProfile);
 }
 
-function getCard(item) {
-  const newCard = template.content.cloneNode(true);
-  const imgEl = newCard.querySelector('.photo-card__image');
-  const nameEl = newCard.querySelector('.photo-card__name');
-  const deleteCardBtn = newCard.querySelector('.photo-card__btn_delete');
-  const likeCardBtn = newCard.querySelector('.photo-card__btn_like');
-
-  imgEl.src = item.link;
-  imgEl.alt = item.name;
-  nameEl.textContent = item.name;
-
-  deleteCardBtn.addEventListener('click', deleteCard);
-  likeCardBtn.addEventListener('click', likeCard);
-  imgEl.addEventListener('click',() => {
-    photoViewName.textContent = item.name;
-    photoViewImage.src = item.link;
-    photoViewImage.alt = item.name;
-
-    openPopup(popupPhotoView);
-  });
-
-  return newCard;
-}
-
 function formSumbitPhotoCardHandler (evt) {
   evt.preventDefault();
 
-  const nameCard = siteInput.value;
-  const linkCard = linkInput.value;
-  const photoCard = getCard({name: nameCard, link: linkCard});
+  const cardItem = {name: siteInput.value, link: linkInput.value}
 
-  photoCardsContainer.prepend(photoCard);
+  const photoCard = new Card (cardItem, '.template');
+  const photoCardElement = photoCard.generateCard()
+
+  photoCardsContainer.prepend(photoCardElement);
   formElementPhotoCard.reset()
   siteInput.dispatchEvent(new Event('input'));
   linkInput.dispatchEvent(new Event('input'));
+
   closePopup(popupPhotoCard);
 }
-
-function renderCards() {
-  const cards = initialCards.map(getCard);
-
-  photoCardsContainer.append(...cards);
-}
-
-function deleteCard(evt) {
-  evt.target.closest('.photo-card').remove();
-}
-
-function likeCard(evt) {
-  evt.target.classList.toggle('photo-card__btn_like_active');
-}
-
-renderCards();
 
 openPopupProfileBtn.addEventListener('click',() => {
   upProfileInfo(formElementProfile);
   openPopup(popupProfile);
 });
+
 openPopupPhotoCardBtn.addEventListener('click',() => {
   const inputPhotoCardList = Array.from(formElementPhotoCard.querySelectorAll('.form__input'));
 
@@ -177,3 +134,11 @@ openPopupPhotoCardBtn.addEventListener('click',() => {
 
 formElementProfile.addEventListener('submit', formSubmitProfileHandler);
 formElementPhotoCard.addEventListener('submit', formSumbitPhotoCardHandler);
+
+import Card from './Card.js'
+
+initialCards.forEach((item) => {
+  const card = new Card (item, '.template')
+  const cardElement = card.generateCard()
+  photoCardsContainer.append(cardElement)
+})
