@@ -23,8 +23,6 @@ export default class Card {
     photoViewImage.alt = item.name;
 
     openPopup(popupPhotoView);
-
-    console.log(item)
   }
 
   _setEventListeners(cardElement) {
