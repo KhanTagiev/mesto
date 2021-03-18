@@ -1,6 +1,7 @@
 import openPopup from './index.js'
 
 export default class Card {
+
   constructor(item, selector) {
     this._item = item;
     this._selector = selector;
@@ -25,10 +26,10 @@ export default class Card {
     openPopup(popupPhotoView);
   }
 
-  _setEventListeners(cardElement) {
+  _setEventListeners(cardElement, cardImageElement) {
     cardElement.querySelector('.photo-card__btn_delete').addEventListener('click', this._deleteCard);
     cardElement.querySelector('.photo-card__btn_like').addEventListener('click', this._likeCard);
-    cardElement.querySelector('.photo-card__image').addEventListener('click',() => {this._openPhotoView(this._item)});
+    cardImageElement.addEventListener('click',() => {this._openPhotoView(this._item)});
   }
 
   _getTemplate() {
@@ -40,12 +41,16 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
 
-    this._element.querySelector('.photo-card__name').textContent = this._item.name;
-    this._element.querySelector('.photo-card__image').src = this._item.link;
-    this._element.querySelector('.photo-card__image').alt = this._item.name;
-
     const cardElement = this._element;
-    this._setEventListeners(cardElement);
+    const cardTitleElement = cardElement.querySelector('.photo-card__name');
+    const cardImageElement = cardElement.querySelector('.photo-card__image');
+
+    cardTitleElement.textContent = this._item.name;
+    cardImageElement.src = this._item.link;
+    cardImageElement.alt = this._item.name;
+
+
+    this._setEventListeners(cardElement, cardImageElement);
 
     return this._element
   }

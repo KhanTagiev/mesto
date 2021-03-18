@@ -1,32 +1,6 @@
 import Card from './Card.js'
 import FormValidator from './FormValidator.js'
-
-const initialCards = [
-  {
-    name: 'Владимир',
-    link: './images/vladimir.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: './images/ivanovo.jpg'
-  },
-  {
-    name: 'Великий Новгород',
-    link: './images/velikiy-novgorod.jpg'
-  },
-  {
-    name: 'Кострома',
-    link: './images/kostroma.jpg'
-  },
-  {
-    name: 'Волгоград',
-    link: './images/volgograd.jpg'
-  },
-  {
-    name: 'Красная Поляна',
-    link: './images/krasnaya-polyana.jpg'
-  }
-];
+import {initialCards} from './initialCards.js'
 
 const validateSelectors = {
   formSelector:'.form',
@@ -86,11 +60,18 @@ function closePopup (popupElement) {
   document.removeEventListener('keydown', addPopupCloseKeyDownListener);
 }
 
-function upProfileInfo(formElement) {
+function openProfileInfo() {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 
   editFormValidator.clearValidation()
+}
+
+function openPhotoCardInfo() {
+  siteInput.value = '';
+  linkInput.value = '';
+
+  cardFormValidator.clearValidation()
 }
 
 function formSubmitProfileHandler (evt) {
@@ -105,21 +86,25 @@ function formSumbitPhotoCardHandler (evt) {
   evt.preventDefault();
 
   const cardItem = {name: siteInput.value, link: linkInput.value}
-  const photoCard = new Card (cardItem, '.template');
-  const photoCardElement = photoCard.generateCard()
-
-  photoCardsContainer.prepend(photoCardElement);
+  
+  photoCardsContainer.prepend(createCard(cardItem));
   formElementPhotoCard.reset()
-  cardFormValidator.clearValidation();
 
   closePopup(popupPhotoCard);
 }
 
+function createCard(item) {
+  const card = new Card (item, '.template')
+  const cardElement = card.generateCard()
+  return cardElement
+}
+
 openPopupProfileBtn.addEventListener('click',() => {
-  upProfileInfo(formElementProfile);
+  openProfileInfo();
   openPopup(popupProfile);
 });
 openPopupPhotoCardBtn.addEventListener('click',() => {
+  openPhotoCardInfo()
   openPopup(popupPhotoCard);
 });
 
@@ -127,9 +112,7 @@ formElementProfile.addEventListener('submit', formSubmitProfileHandler);
 formElementPhotoCard.addEventListener('submit', formSumbitPhotoCardHandler);
 
 initialCards.forEach((item) => {
-  const card = new Card (item, '.template')
-  const cardElement = card.generateCard()
-  photoCardsContainer.append(cardElement)
+  photoCardsContainer.append(createCard(item))
 })
 
 editFormValidator.enableValidation();
