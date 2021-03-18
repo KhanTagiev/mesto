@@ -59,19 +59,18 @@ function closePopup (popupElement) {
   popupElement.removeEventListener('click', addPopupCloseClickListener);
   document.removeEventListener('keydown', addPopupCloseKeyDownListener);
 }
+function clearInputValidity(formValidator) {
+  formValidator.clearValidation()
+}
 
 function openProfileInfo() {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-
-  editFormValidator.clearValidation()
 }
 
 function openPhotoCardInfo() {
   siteInput.value = '';
   linkInput.value = '';
-
-  cardFormValidator.clearValidation()
 }
 
 function formSubmitProfileHandler (evt) {
@@ -86,7 +85,7 @@ function formSumbitPhotoCardHandler (evt) {
   evt.preventDefault();
 
   const cardItem = {name: siteInput.value, link: linkInput.value}
-  
+
   photoCardsContainer.prepend(createCard(cardItem));
   formElementPhotoCard.reset()
 
@@ -101,10 +100,12 @@ function createCard(item) {
 
 openPopupProfileBtn.addEventListener('click',() => {
   openProfileInfo();
+  clearInputValidity(editFormValidator)
   openPopup(popupProfile);
 });
 openPopupPhotoCardBtn.addEventListener('click',() => {
-  openPhotoCardInfo()
+  openPhotoCardInfo();
+  clearInputValidity(cardFormValidator);
   openPopup(popupPhotoCard);
 });
 
