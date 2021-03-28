@@ -1,4 +1,4 @@
-import openPopup from './index.js'
+import openPopup from '../pages/index.js'
 
 export default class Card {
 
