@@ -1,6 +1,7 @@
 import Card from '../componets/Card.js'
 import FormValidator from '../componets/FormValidator.js'
 import Section from '../componets/Section.js'
+import Popup from '../componets/Popup.js'
 
 import {initialCards, validateSelectors,popupProfile,
   openPopupProfileBtn, formElementProfile, nameInput,
@@ -60,14 +61,15 @@ function formSubmitProfileHandler (evt) {
 
     closePopup(popupProfile);
 }
-
+ const popupProf = new Popup ('.popup_profile');
 
 
 
 openPopupProfileBtn.addEventListener('click',() => {
   openProfileInfo();
   clearInputValidity(editFormValidator)
-  openPopup(popupProfile);
+  popupProf.open()
+  popupProf.setEventListeners()
 });
 
 openPopupPhotoCardBtn.addEventListener('click',() => {
