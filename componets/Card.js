@@ -1,10 +1,9 @@
-import PopupWithImage from './PopupWithImage.js'
-
 export default class Card {
 
-  constructor(item, selector) {
+  constructor({item, handleCardClick}, selector) {
     this._item = item;
     this._selector = selector;
+    this._handleCardClick = handleCardClick
   }
 
   _likeCard(evt) {
@@ -14,17 +13,11 @@ export default class Card {
   _deleteCard(evt) {
     evt.target.closest('.photo-card').remove();
   }
-  _openPhotoView() {
-    const popupWithImage = new PopupWithImage (this._item, '.popup_photo-view');
-
-    popupWithImage.open();
-    popupWithImage.setEventListeners();
-  }
 
   _setEventListeners(cardElement, cardImageElement) {
     cardElement.querySelector('.photo-card__btn_delete').addEventListener('click', this._deleteCard);
     cardElement.querySelector('.photo-card__btn_like').addEventListener('click', this._likeCard);
-    cardImageElement.addEventListener('click', this._openPhotoView.bind(this));
+    cardImageElement.addEventListener('click', this._handleCardClick);
   }
 
   _getTemplate() {

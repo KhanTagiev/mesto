@@ -2,6 +2,7 @@ import Card from '../componets/Card.js'
 import FormValidator from '../componets/FormValidator.js'
 import Section from '../componets/Section.js'
 import Popup from '../componets/Popup.js'
+import PopupWithImage from '../componets/PopupWithImage.js'
 
 import {initialCards, validateSelectors,popupProfile,
   openPopupProfileBtn, formElementProfile, nameInput,
@@ -87,25 +88,32 @@ function formSumbitPhotoCardHandler (evt) {
 
   const cardItem = {name: siteInput.value, link: linkInput.value}
 
-  photoCardsContainer.prepend(createCard(cardItem));
+  photoCardsContainer.prepend(createCardItem(cardItem));
 
   formElementPhotoCard.reset()
 
   closePopup(popupPhotoCard);
 }
 
-function createCard(item) {
-  const card = new Card (item, '.template')
+function createCardItem(itemElement) {
+  const card = new Card (
+    {item: itemElement,
+    handleCardClick: () => {
+      const popupWithImage = new PopupWithImage (itemElement, '.popup_photo-view');
+      popupWithImage.open();
+      popupWithImage.setEventListeners();
+    }},
+    '.template'
+  );
   const cardElement = card.generateCard()
   return cardElement
 }
 
 const initialCardsRender = new Section({
   items: initialCards,
-  renderer: (item) => {
-    const card = new Card (item, '.template');
-    const cardElement = card.generateCard()
-    initialCardsRender.addItem(cardElement)
+  renderer: (itemElement) => {
+
+    initialCardsRender.addItem(createCardItem(itemElement))
   }},
   '.photo-cards__container'
 );
