@@ -38,21 +38,16 @@ const popupProfile = document.querySelector('.popup_profile')
 const openPopupProfileBtn = document.querySelector('.profile__btn_edit')
 
 const formElementProfile = popupProfile.querySelector('.form')
-const nameInput = formElementProfile.querySelector('.form__input_name')
-const jobInput = formElementProfile.querySelector('.form__input_job')
 
 const popupPhotoCard = document.querySelector('.popup_photo-card')
 const openPopupPhotoCardBtn = document.querySelector('.profile__btn_add')
 
 const formElementPhotoCard = popupPhotoCard.querySelector('.form')
-const siteInput = formElementPhotoCard.querySelector('.form__input_site')
-const linkInput = formElementPhotoCard.querySelector('.form__input_url')
 
 const profile = document.querySelector('.profile')
 const nameProfile = profile.querySelector('.profile__name')
 const jobProfile = profile.querySelector('.profile__job')
 const photoCardsContainer = document.querySelector('.photo-cards__container')
 
-export {initialCards, validateSelectors,popupProfile, openPopupProfileBtn, formElementProfile,
-nameInput, jobInput,popupPhotoCard, openPopupPhotoCardBtn, formElementPhotoCard,
-siteInput, linkInput,profile,nameProfile, jobProfile, photoCardsContainer}
+export {initialCards, validateSelectors, openPopupProfileBtn,
+  formElementProfile, openPopupPhotoCardBtn, formElementPhotoCard,profile,nameProfile, jobProfile, photoCardsContainer}

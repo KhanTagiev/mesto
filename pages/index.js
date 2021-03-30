@@ -1,13 +1,11 @@
 import Card from '../componets/Card.js'
 import FormValidator from '../componets/FormValidator.js'
 import Section from '../componets/Section.js'
-import Popup from '../componets/Popup.js'
+import PopupWithForm from '../componets/PopupWithForm.js'
 import PopupWithImage from '../componets/PopupWithImage.js'
 
-import {initialCards, validateSelectors,popupProfile,
-  openPopupProfileBtn, formElementProfile, nameInput,
-  jobInput,popupPhotoCard, openPopupPhotoCardBtn, formElementPhotoCard,
-  siteInput, linkInput,profile,nameProfile, jobProfile,
+import {initialCards, validateSelectors,
+  openPopupProfileBtn, formElementProfile, openPopupPhotoCardBtn, formElementPhotoCard,nameProfile, jobProfile,
   photoCardsContainer} from '../utils/constants.js'
 
 
@@ -45,55 +43,33 @@ function clearInputValidity(formValidator) {
   formValidator.clearValidation()
 }
 
-function openProfileInfo() {
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
-}
+const popupProfileForm = new PopupWithForm (
+  {submitForm: (item) => {
+    nameProfile.textContent = item[0];
+    jobProfile.textContent = item[1];
+  }
+  },
+  '.popup_profile');
 
-function openPhotoCardInfo() {
-  siteInput.value = '';
-  linkInput.value = '';
-}
-
-function formSubmitProfileHandler (evt) {
-    evt.preventDefault();
-    nameProfile.textContent = nameInput.value;
-    jobProfile.textContent = jobInput.value;
-
-    closePopup(popupProfile);
-}
- const popupProf = new Popup ('.popup_profile');
-
-
+const popupPhotoCardForm = new PopupWithForm (
+  {submitForm: (item) => {
+    const cardItem = {name: item[0], link: item[1]};
+    photoCardsContainer.prepend(createCardItem(cardItem));
+   }
+},
+    '.popup_photo-card');
 
 openPopupProfileBtn.addEventListener('click',() => {
-  openProfileInfo();
   clearInputValidity(editFormValidator)
-  popupProf.open()
-  popupProf.setEventListeners()
+  popupProfileForm.open()
+  popupProfileForm.setEventListeners()
 });
 
 openPopupPhotoCardBtn.addEventListener('click',() => {
-  openPhotoCardInfo();
   clearInputValidity(cardFormValidator);
-  openPopup(popupPhotoCard);
+  popupPhotoCardForm.open()
+  popupPhotoCardForm.setEventListeners()
 });
-
-formElementProfile.addEventListener('submit', formSubmitProfileHandler);
-formElementPhotoCard.addEventListener('submit', formSumbitPhotoCardHandler);
-
-
-function formSumbitPhotoCardHandler (evt) {
-  evt.preventDefault();
-
-  const cardItem = {name: siteInput.value, link: linkInput.value}
-
-  photoCardsContainer.prepend(createCardItem(cardItem));
-
-  formElementPhotoCard.reset()
-
-  closePopup(popupPhotoCard);
-}
 
 function createCardItem(itemElement) {
   const card = new Card (
@@ -112,7 +88,6 @@ function createCardItem(itemElement) {
 const initialCardsRender = new Section({
   items: initialCards,
   renderer: (itemElement) => {
-
     initialCardsRender.addItem(createCardItem(itemElement))
   }},
   '.photo-cards__container'

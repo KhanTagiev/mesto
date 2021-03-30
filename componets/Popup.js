@@ -1,6 +1,6 @@
 export default class Popup {
   constructor(popupSelector) {
-    this._popupElement= document.querySelector(popupSelector);
+    this._popupElement = document.querySelector(popupSelector);
     this._handleClickClose = this._handleClickClose.bind(this)
     this._handleEscClose = this._handleEscClose.bind(this)
   }
@@ -8,13 +8,11 @@ export default class Popup {
   _handleClickClose(evt) {
     if (evt.target.classList.contains('popup__btn_close') || evt.target.classList.contains('popup') ) {
       this.close()
-      this._removeEventListeners();
      };
   }
   _handleEscClose(evt) {
     if (evt.key === "Escape") {
       this.close();
-      this._removeEventListeners();
     }
   }
 
@@ -34,6 +32,7 @@ export default class Popup {
 
   close() {
     this._popupElement.classList.remove('popup_opened');
+    this._removeEventListeners()
   }
 }
 
