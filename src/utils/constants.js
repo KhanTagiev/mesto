@@ -1,27 +1,34 @@
+const vladimirImage = new URL('../images/vladimir.jpg', import.meta.url);
+const ivanovoImage = new URL('../images/ivanovo.jpg', import.meta.url);
+const velikiyNovgorodImage = new URL('../images/velikiy-novgorod.jpg', import.meta.url);
+const kostromaImage = new URL('../images/kostroma.jpg', import.meta.url);
+const volgogradImage = new URL('../images/volgograd.jpg', import.meta.url);
+const krasnayaPolyanaImage = new URL('../images/krasnaya-polyana.jpg', import.meta.url);
+
 const initialCards = [
   {
     name: 'Владимир',
-    link: './images/vladimir.jpg'
+    link: vladimirImage
   },
   {
     name: 'Иваново',
-    link: './images/ivanovo.jpg'
+    link: ivanovoImage
   },
   {
     name: 'Великий Новгород',
-    link: './images/velikiy-novgorod.jpg'
+    link: velikiyNovgorodImage
   },
   {
     name: 'Кострома',
-    link: './images/kostroma.jpg'
+    link: kostromaImage
   },
   {
     name: 'Волгоград',
-    link: './images/volgograd.jpg'
+    link: volgogradImage
   },
   {
     name: 'Красная Поляна',
-    link: './images/krasnaya-polyana.jpg'
+    link: krasnayaPolyanaImage
   }
 ];
 
