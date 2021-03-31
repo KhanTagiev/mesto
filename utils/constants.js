@@ -44,10 +44,7 @@ const openPopupPhotoCardBtn = document.querySelector('.profile__btn_add')
 
 const formElementPhotoCard = popupPhotoCard.querySelector('.form')
 
-const profile = document.querySelector('.profile')
-const nameProfile = profile.querySelector('.profile__name')
-const jobProfile = profile.querySelector('.profile__job')
 const photoCardsContainer = document.querySelector('.photo-cards__container')
 
-export {initialCards, validateSelectors, openPopupProfileBtn,
-  formElementProfile, openPopupPhotoCardBtn, formElementPhotoCard,profile,nameProfile, jobProfile, photoCardsContainer}
+export {initialCards, validateSelectors, openPopupProfileBtn, formElementProfile,
+  openPopupPhotoCardBtn, formElementPhotoCard, photoCardsContainer}
