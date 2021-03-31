@@ -7,7 +7,7 @@ import PopupWithForm from '../componets/PopupWithForm.js'
 import PopupWithImage from '../componets/PopupWithImage.js'
 import UserInfo from '../componets/UserInfo.js'
 
-import {initialCards, validateSelectors, openPopupProfileBtn, formElementProfile,
+import {initialCards, validateSelectors, openPopupProfileBtn, formElementProfile, nameInput, jobInput,
   openPopupPhotoCardBtn, formElementPhotoCard, photoCardsContainer} from '../utils/constants.js'
 
 const editFormValidator = new FormValidator(validateSelectors, formElementProfile)
@@ -29,25 +29,27 @@ const popupPhotoCardForm = new PopupWithForm (
 },
 '.popup_photo-card');
 
-const openProfileInfo = new UserInfo ({
-  nameInputSelector: '.form__input_name',
-  jobInputSelector: '.form__input_job'
+const profileInfo = new UserInfo ({
+  nameSelector: '.profile__name',
+  jobSelector: '.profile__job'
 })
 
 const popupProfileForm = new PopupWithForm (
   {submitForm: (item) => {
-    openProfileInfo.setUserInfo(item)
+    const profileItem = {name: item[0], job: item[1]};
+    profileInfo.setUserInfo(profileItem)
   }
 },
 '.popup_profile');
+
+const popupImage = new PopupWithImage ('.popup_photo-view');
 
 function createCardItem(itemElement) {
   const card = new Card (
     {item: itemElement,
     handleCardClick: () => {
-      const popupWithImage = new PopupWithImage (itemElement, '.popup_photo-view');
-      popupWithImage.open();
-      popupWithImage.setEventListeners();
+      popupImage.open(itemElement);
+      popupImage.setEventListeners();
     }},
     '.template'
   );
@@ -59,9 +61,15 @@ function clearInputValidity(formValidator) {
   formValidator.clearValidation()
 }
 
+function openProfileInfo() {
+  const profileElement = profileInfo.getUserInfo()
+  nameInput.value = profileElement.name;
+  jobInput.value = profileElement.job;
+}
+
 openPopupProfileBtn.addEventListener('click',() => {
   clearInputValidity(editFormValidator)
-  openProfileInfo.getUserInfo()
+  openProfileInfo()
   popupProfileForm.open()
   popupProfileForm.setEventListeners()
 });
