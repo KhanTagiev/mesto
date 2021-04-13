@@ -8,7 +8,7 @@
 @import url('../blocks/profile/__info/profile__info.css');
 @import url('../blocks/profile/__name-info/profile__name-info.css');
 @import url('../blocks/profile/__name/profile__name.css');
-@import url('../blocks/profile/__job/profile__job.css');
+@import url('../blocks/profile/__about/profile__about.css');
 @import url('../blocks/profile/__btn/profile__btn.css');
 @import url('../blocks/profile/__btn/_edit/profile__btn_edit.css');
 @import url('../blocks/profile/__btn/_add/profile__btn_add.css');
@@ -40,7 +40,7 @@
 @import url('../blocks/form/__label/form__label.css');
 @import url('../blocks/form/__input/form__input.css');
 @import url('../blocks/form/__input/_name/form__input_name.css');
-@import url('../blocks/form/__input/_job/form__input_job.css');
+@import url('../blocks/form/__input/_about/form__input_about.css');
 @import url('../blocks/form/__input/_site/form__input_site.css');
 @import url('../blocks/form/__input/_url/form__input_url.css');
 @import url('../blocks/form/__input-error/form__input-error.css');
