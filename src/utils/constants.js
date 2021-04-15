@@ -44,6 +44,11 @@ const validateSelectors = {
 const popupProfile = document.querySelector('.popup_profile')
 const openPopupProfileBtn = document.querySelector('.profile__btn_edit')
 
+const popupAvatar = document.querySelector('.popup_avatar')
+const formElementAvatar = popupAvatar.querySelector('.form')
+const avatarInput = formElementAvatar.querySelector('.form__input_avatar')
+const openPopupAvatarBtn = document.querySelector('.profile__avatar-hover')
+
 const avatar = document.querySelector('.profile__avatar')
 
 const formElementProfile = popupProfile.querySelector('.form')
@@ -59,5 +64,5 @@ const photoCardsContainer = document.querySelector('.photo-cards__container')
 
 const closeKey = "Escape";
 
-export {initialCards, avatar, validateSelectors, openPopupProfileBtn, formElementProfile, nameInput, aboutInput,
+export {initialCards, avatar, validateSelectors, openPopupProfileBtn,formElementAvatar,avatarInput, openPopupAvatarBtn, formElementProfile, nameInput, aboutInput,
   openPopupPhotoCardBtn, formElementPhotoCard, photoCardsContainer, closeKey}

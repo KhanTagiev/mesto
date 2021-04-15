@@ -54,6 +54,26 @@ export default class Api {
     )
   }
 
+  setUserAvatar({avatar}) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        avatar: avatar
+      })
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+        return Promise.reject(`Ошибка ${response.status}`)
+      }
+    )
+  }
+
   sendNewCard({name, link}) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',

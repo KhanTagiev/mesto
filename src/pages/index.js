@@ -9,7 +9,7 @@ import PopupImageDelete from '../componets/PopupImageDelete.js'
 import UserInfo from '../componets/UserInfo.js'
 import Api from '../componets/Api.js'
 
-import {initialCards,avatar, validateSelectors, openPopupProfileBtn, formElementProfile, nameInput, aboutInput,
+import {initialCards,avatar, validateSelectors, openPopupProfileBtn,formElementAvatar,avatarInput, openPopupAvatarBtn, formElementProfile, nameInput, aboutInput,
   openPopupPhotoCardBtn, formElementPhotoCard, photoCardsContainer} from '../utils/constants.js'
 
 let UserId
@@ -25,8 +25,9 @@ const profileInfo = new UserInfo ({
   avatarSelector: '.profile__avatar'
 })
 
-const editFormValidator = new FormValidator(validateSelectors, formElementProfile)
-const cardFormValidator = new FormValidator(validateSelectors, formElementPhotoCard)
+const editFormValidator = new FormValidator(validateSelectors, formElementProfile);
+const editAvatarFormValidator = new FormValidator(validateSelectors, formElementAvatar);
+const cardFormValidator = new FormValidator(validateSelectors, formElementPhotoCard);
 
 const popupImage = new PopupWithImage ('.popup_photo-view');
 const popupImageDelete = new PopupImageDelete ('.popup_photo-card-delete')
@@ -53,6 +54,17 @@ const popupProfileForm = new PopupWithForm (
   },
   '.popup_profile');
 
+  const popupAvatarForm = new PopupWithForm (
+    {submitForm: (item) => {
+      const profileItem = {avatar: item[0]};
+      api.setUserAvatar(profileItem)
+        .then(data => {
+          profileInfo.setUserInfo(data)
+        })
+        .catch(err => console.log(err));
+      }
+    },
+    '.popup_avatar');
 
   function createCardItem(itemElement) {
   const card = new Card ({
@@ -102,9 +114,14 @@ function clearInputValidity(formValidator) {
 
 function openProfileInfo() {
   const profileElement = profileInfo.getUserInfo()
-  console.log(UserId)
   nameInput.value = profileElement.name;
   aboutInput.value = profileElement.about;
+}
+function openAvatarInfo() {
+  const profileElement = profileInfo.getUserInfo()
+  console.log(avatarInput)
+  avatarInput.value = profileElement.avatar
+
 }
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -123,11 +140,19 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 .catch(err => console.log(err))
 
 openPopupProfileBtn.addEventListener('click',() => {
-  clearInputValidity(editFormValidator)
   openProfileInfo()
+  clearInputValidity(editFormValidator)
   popupProfileForm.open()
   popupProfileForm.setEventListeners()
 });
+
+openPopupAvatarBtn.addEventListener('click',() => {
+  openAvatarInfo()
+  clearInputValidity(editAvatarFormValidator)
+  popupAvatarForm.open()
+  popupAvatarForm.setEventListeners()
+});
+
 
 openPopupPhotoCardBtn.addEventListener('click',() => {
   clearInputValidity(cardFormValidator);
@@ -137,5 +162,4 @@ openPopupPhotoCardBtn.addEventListener('click',() => {
 
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
-
-
+editAvatarFormValidator.enableValidation();

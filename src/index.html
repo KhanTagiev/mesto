@@ -11,7 +11,10 @@
 </header>
 <main>
 <section class="profile">
-  <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Аватар пользователя">
+  <div class="profile__avatar-container">
+    <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Аватар пользователя">
+    <span class="profile__avatar-hover"></span>
+  </div>
   <div class="profile__info">
     <div class="profile__name-info">
       <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -73,6 +76,21 @@
       </figcaption>
     </figure>
     <button class="popup__btn popup__btn_close" type="button" aria-label="Закрыть окно добавления места"></button>
+  </div>
+</section>
+<section class="popup popup_avatar">
+  <div class="popup__container">
+    <h2 class="popup__title">Обновить аватар</h2>
+    <form class="form" name="photo-card" novalidate>
+      <fieldset class="form__fieldset form__fieldset_avatar">
+        <label class="form__label">
+          <input class="form__input form__input_avatar" type="url" value="<%=require('./images/profile-avatar.jpg')%>" placeholder="Ссылка на аватар" name="avatar-url" required>
+          <span class="form__input-error avatar-url-error"></span>
+        </label>
+        <button class="form__btn form__btn_save"  type="submit" aria-label="Сохранить">Сохранить</button>
+      </fieldset>
+    </form>
+    <button class="popup__btn popup__btn_close" type="button" aria-label="Закрыть окно редактирования аватара"></button>
   </div>
 </section>
 <section class="popup popup_photo-card-delete">
