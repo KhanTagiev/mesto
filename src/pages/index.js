@@ -70,11 +70,30 @@ const popupProfileForm = new PopupWithForm (
       }
       popupImageDelete.open();
       popupImageDelete.setEventListeners(cardDelete)
-    }
+    },
+    handleLikeClick: () => {
+      if (card.findLikeMe()) {
+        api.deleteLike(itemElement)
+          .then(data => {
+            card.likeCard()
+            card.setLikes(data)
+          })
+          .catch(err => console.log(err));
+      } else {
+        api.putLike(itemElement)
+          .then(data => {
+            card.likeCard()
+            card.setLikes(data)
+          })
+          .catch(err => console.log(err));
+      }
+
+    },
+    userId: UserId
   },
     '.template'
     );
-  return card.generateCard(UserId)
+  return card.generateCard()
 }
 
 function clearInputValidity(formValidator) {
