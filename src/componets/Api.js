@@ -33,7 +33,7 @@ export default class Api {
       })
   }
 
-  updateUserInfo({name, about}) {
+  setUserInfo({name, about}) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: {
@@ -46,11 +46,46 @@ export default class Api {
       })
     })
       .then(response => {
-        if (response) {
+        if (response.ok) {
+          return response.json()
+        }
+        return Promise.reject(`Ошибка ${response.status}`)
+      }
+    )
+  }
+
+  sendNewCard({name, link}) {
+    return fetch(`${this._url}/cards`, {
+      method: 'POST',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        link: link
+      })
+    })
+      .then(response => {
+        if (response.ok) {
           return response.json()
         }
         return Promise.reject(`Ошибка ${response.status}`)
       })
   }
 
+  deleteCard({_id}){
+    return fetch(`${this._url}/cards/${_id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._token
+      }
+    })
+      .then(response => {
+        if (response) {
+          return response.json()
+        }
+        return Promise.reject(`Ошибка ${response.status}`)
+      })
+  }
 }

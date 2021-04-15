@@ -1,5 +1,6 @@
 .photo-card__info {
   display: flex;
   justify-content: space-between;
-  margin: 25px 20px;
+  align-items: center;
+  margin: 20px;
 }

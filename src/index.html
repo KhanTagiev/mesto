@@ -75,6 +75,13 @@
     <button class="popup__btn popup__btn_close" type="button" aria-label="Закрыть окно добавления места"></button>
   </div>
 </section>
+<section class="popup popup_photo-card-delete">
+  <div class="popup__container">
+    <h2 class="popup__title popup__title_delete">Вы уверены?</h2>
+    <button class="popup__btn popup__btn_delete"  type="button" aria-label="Удалить">Да</button>
+    <button class="popup__btn popup__btn_close" type="button" aria-label="Закрыть окно просмотра места"></button>
+  </div>
+</section>
 <footer class="footer">
   <p class="footer__copyright">&#169; 2021. Mesto Russia</p>
 </footer>
@@ -84,7 +91,10 @@
       <img class="photo-card__image" src="#" alt="#">
       <figcaption class="photo-card__info">
         <h2 class="photo-card__name">#</h2>
-        <button class="photo-card__btn photo-card__btn_like" type="button" aria-label="Поставить лайк"></button>
+        <div class="photo-card__like-container">
+          <button class="photo-card__btn photo-card__btn_like" type="button" aria-label="Поставить лайк"></button>
+          <p class="photo-card__likes"></p>
+        </div>
       </figcaption>
       <button class="photo-card__btn photo-card__btn_delete" type="button" aria-label="Удалить фотографию"></button>
     </figure>
