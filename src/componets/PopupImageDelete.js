@@ -6,15 +6,17 @@ export default class PopupImageDelete extends Popup {
     this._submitBtn = this._popupElement.querySelector('.popup__btn_delete')
   }
 
-  setEventListeners(handleCardDelete) {
+  setHandleCardDelete(handleCardDelete) {
+    this._handleCardDelete = handleCardDelete
+  }
+
+  setEventListeners() {
     super.setEventListeners();
-    this._submitBtn.addEventListener('click', handleCardDelete)
+    this._submitBtn.addEventListener('click', this._handleCardDelete);
   }
 
   _removeEventListeners() {
     super._removeEventListeners();
-    //this._submitBtn.removeEventListener('submit', handleCardDelete);
+    this._submitBtn.removeEventListener('click', this._handleCardDelete);
   }
-
-
 }

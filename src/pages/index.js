@@ -80,22 +80,23 @@ const popupProfileForm = new PopupWithForm (
           .catch(err => console.log(err));
         popupImageDelete.close();
       }
+      popupImageDelete.setHandleCardDelete(cardDelete)
+      popupImageDelete.setEventListeners()
       popupImageDelete.open();
-      popupImageDelete.setEventListeners(cardDelete)
     },
     handleLikeClick: () => {
-      if (card.findLikeMe()) {
+      if (card.returnLikeState()) {
         api.deleteLike(itemElement)
           .then(data => {
-            card.likeCard()
-            card.setLikes(data)
+            card.deleteLikeCard()
+            card.setCountLikes(data)
           })
           .catch(err => console.log(err));
       } else {
         api.putLike(itemElement)
           .then(data => {
-            card.likeCard()
-            card.setLikes(data)
+            card.setLikeCard()
+            card.setCountLikes(data)
           })
           .catch(err => console.log(err));
       }
