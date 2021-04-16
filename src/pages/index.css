@@ -25,7 +25,7 @@
 @import url('../blocks/photo-card/__btn/photo-card__btn.css');
 @import url('../blocks/photo-card/__btn/_like/photo-card__btn_like.css');
 @import url('../blocks/photo-card/__btn/_like/_active/photo-card__btn_like_active.css');
-@import url('../blocks/photo-card/__likes/photo-card__likes.css');
+@import url('../blocks/photo-card/__like-counter/photo-card__like-counter.css');
 @import url('../blocks/photo-card/__btn/_delete/photo-card__btn_delete.css');
 @import url('../blocks/photo-card/__btn/_delete/_visible/photo-card__btn_delete_visible.css');
 @import url('../blocks/footer/footer.css');

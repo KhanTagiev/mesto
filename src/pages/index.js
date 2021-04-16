@@ -95,15 +95,13 @@ const popupProfileForm = new PopupWithForm (
       if (card.returnLikeState()) {
         api.deleteLike(itemElement)
           .then(data => {
-            card.deleteLikeCard()
-            card.setCountLikes(data)
+            card.handleLikeCard(data)
           })
           .catch(err => console.log(err));
       } else {
         api.putLike(itemElement)
           .then(data => {
-            card.setLikeCard()
-            card.setCountLikes(data)
+            card.handleLikeCard(data)
           })
           .catch(err => console.log(err));
       }
