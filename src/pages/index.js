@@ -33,35 +33,42 @@ const popupImage = new PopupWithImage ('.popup_photo-view');
 const popupImageDelete = new PopupImageDelete ('.popup_photo-card-delete')
 const popupPhotoCardForm = new PopupWithForm (
   {submitForm: (item) => {
+    popupPhotoCardForm.submitRendering(true)
     const cardItem = {name: item[0], link: item[1]};
     api.sendNewCard(cardItem)
     .then(card => {
       photoCardsContainer.prepend(createCardItem(card));
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
+    .finally(popupPhotoCardForm.submitRendering(false));
   }
 },
 '.popup_photo-card');
+
 const popupProfileForm = new PopupWithForm (
   {submitForm: (item) => {
+    popupProfileForm.submitRendering(true)
     const profileItem = {name: item[0], about: item[1]};
     api.setUserInfo(profileItem)
       .then(data => {
         profileInfo.setUserInfo(data)
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
+      .finally(popupProfileForm.submitRendering(false));
     }
   },
   '.popup_profile');
 
   const popupAvatarForm = new PopupWithForm (
     {submitForm: (item) => {
+      popupAvatarForm.submitRendering(true);
       const profileItem = {avatar: item[0]};
       api.setUserAvatar(profileItem)
         .then(data => {
           profileInfo.setUserInfo(data)
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(popupAvatarForm.submitRendering(false));
       }
     },
     '.popup_avatar');
