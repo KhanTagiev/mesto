@@ -9,13 +9,10 @@ export default class PopupWithForm extends Popup {
     this._inputList = Array.from(this._form.querySelectorAll('.form__input'))
     this._submitBtn = this._form.querySelector('.form__btn_save')
     this._submitBtnTextContent = this._submitBtn.textContent
-
   }
 
   _getInputValues() {
-    const inputValues = this._inputList.map((inputElement) => {
-      return inputElement.value
-    })
+    const inputValues = this._inputList.map(inputElement => inputElement.value)
     return inputValues
   }
 
@@ -24,7 +21,7 @@ export default class PopupWithForm extends Popup {
       this._submitBtn.textContent = 'Сохранение...'
     } else {
       this.close()
-      this._submitBtn.textContent = this._submitBtn.textContent
+      this._submitBtn.textContent = this._submitBtnTextContent
     }
   }
 
