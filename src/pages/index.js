@@ -9,7 +9,7 @@ import PopupImageDelete from '../componets/PopupImageDelete.js'
 import UserInfo from '../componets/UserInfo.js'
 import Api from '../componets/Api.js'
 
-import {initialCards,avatar, validateSelectors, openPopupProfileBtn,formElementAvatar,avatarInput, openPopupAvatarBtn, formElementProfile, nameInput, aboutInput,
+import {validateSelectors, openPopupProfileBtn,formElementAvatar,avatarInput, openPopupAvatarBtn, formElementProfile, nameInput, aboutInput,
   openPopupPhotoCardBtn, formElementPhotoCard, photoCardsContainer} from '../utils/constants.js'
 
 let UserId
