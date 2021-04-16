@@ -5,17 +5,17 @@ export default class PopupWithImage extends Popup {
     super(popupSelector);
   }
 
-  _handlePhotoViewOpen(item){
+  _handlePhotoViewOpen({link, name}){
     const photoViewImage = this._popupElement.querySelector('.photo-view__image');
     const photoViewName = this._popupElement.querySelector('.photo-view__name');
 
-    photoViewName.textContent = item.name;
-    photoViewImage.src = item.link;
-    photoViewImage.alt = item.name;
+    photoViewName.textContent = name;
+    photoViewImage.src = link;
+    photoViewImage.alt = name;
   }
 
-  open(item) {
-    this._handlePhotoViewOpen(item)
+  open({link, name}) {
+    this._handlePhotoViewOpen({link, name})
     super.open();
   }
 }

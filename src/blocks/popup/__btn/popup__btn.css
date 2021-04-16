@@ -1,14 +1,10 @@
 .popup__btn {
-  background-position: center;
-  background-color: rgba(0, 0, 0, 0);
-  background-repeat: no-repeat;
-  background-size: contain;
   border: none;
   padding: 0;
   transition: opacity .8s ease 0s;
 }
 
 .popup__btn:hover {
-  opacity: .6;
+  opacity: .8;
   cursor: pointer;
 }
