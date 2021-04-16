@@ -44,10 +44,16 @@ const validateSelectors = {
 const popupProfile = document.querySelector('.popup_profile')
 const openPopupProfileBtn = document.querySelector('.profile__btn_edit')
 
+const popupAvatar = document.querySelector('.popup_avatar')
+const formElementAvatar = popupAvatar.querySelector('.form')
+const avatarInput = formElementAvatar.querySelector('.form__input_avatar')
+const openPopupAvatarBtn = document.querySelector('.profile__avatar-hover')
+
+const avatar = document.querySelector('.profile__avatar')
+
 const formElementProfile = popupProfile.querySelector('.form')
 const nameInput = formElementProfile.querySelector('.form__input_name')
-const jobInput = formElementProfile.querySelector('.form__input_job')
-
+const aboutInput = formElementProfile.querySelector('.form__input_about')
 
 const popupPhotoCard = document.querySelector('.popup_photo-card')
 const openPopupPhotoCardBtn = document.querySelector('.profile__btn_add')
@@ -58,5 +64,5 @@ const photoCardsContainer = document.querySelector('.photo-cards__container')
 
 const closeKey = "Escape";
 
-export {initialCards, validateSelectors, openPopupProfileBtn, formElementProfile, nameInput, jobInput,
+export {initialCards, avatar, validateSelectors, openPopupProfileBtn,formElementAvatar,avatarInput, openPopupAvatarBtn, formElementProfile, nameInput, aboutInput,
   openPopupPhotoCardBtn, formElementPhotoCard, photoCardsContainer, closeKey}
