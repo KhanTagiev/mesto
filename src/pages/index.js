@@ -59,21 +59,20 @@ const popupProfileForm = new PopupWithForm (
   },
   '.popup_profile');
 
-  const popupAvatarForm = new PopupWithForm (
-    {submitForm: (item) => {
-      popupAvatarForm.submitRendering(true);
-      const profileItem = {avatar: item[0]};
-      api.setUserAvatar(profileItem)
-        .then(data => {
-          profileInfo.setUserInfo(data)
-        })
-        .catch(err => console.log(err))
-        .finally(popupAvatarForm.submitRendering(false));
-      }
-    },
-    '.popup_avatar');
+const popupAvatarForm = new PopupWithForm (
+  {submitForm: (item) => {
+    popupAvatarForm.submitRendering(true);
+    const profileItem = {avatar: item[0]};
+    api.setUserAvatar(profileItem)
+      .then(data => {
+        profileInfo.setUserInfo(data)
+      })
+      .finally(popupAvatarForm.submitRendering(false));
+    }
+  },
+  '.popup_avatar');
 
-  function createCardItem(itemElement) {
+function createCardItem(itemElement) {
   const card = new Card ({
     item: itemElement,
     handleCardClick: () => {
@@ -118,16 +117,11 @@ function clearInputValidity(formValidator) {
   formValidator.clearValidation()
 }
 
-function openProfileInfo() {
-  const profileElement = profileInfo.getUserInfo()
-  nameInput.value = profileElement.name;
-  aboutInput.value = profileElement.about;
-}
-function openAvatarInfo() {
-  const profileElement = profileInfo.getUserInfo()
-  console.log(avatarInput)
-  avatarInput.value = profileElement.avatar
-
+function updateInputsValue() {
+  const profileInputs = profileInfo.getUserInfo()
+  nameInput.value = profileInputs.name;
+  aboutInput.value = profileInputs.about;
+  avatarInput.value = profileInputs.avatar;
 }
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -146,14 +140,14 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 .catch(err => console.log(err))
 
 openPopupProfileBtn.addEventListener('click',() => {
-  openProfileInfo()
+  updateInputsValue()
   clearInputValidity(editFormValidator)
   popupProfileForm.open()
   popupProfileForm.setEventListeners()
 });
 
 openPopupAvatarBtn.addEventListener('click',() => {
-  openAvatarInfo()
+  updateInputsValue()
   clearInputValidity(editAvatarFormValidator)
   popupAvatarForm.open()
   popupAvatarForm.setEventListeners()
