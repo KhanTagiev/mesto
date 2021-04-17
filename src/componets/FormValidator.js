@@ -14,13 +14,13 @@ export default class FormValidator {
     })
   }
 
-  _toggleButtonState(buttonElement) {
+  _toggleButtonState() {
     if (this._hasInvalid()) {
-      buttonElement.setAttribute('disabled', true);
-      buttonElement.classList.add(this._buttonDisabledClass);
+      this._buttonElement.setAttribute('disabled', true);
+      this._buttonElement.classList.add(this._buttonDisabledClass);
     } else {
-      buttonElement.removeAttribute('disabled');
-      buttonElement.classList.remove(this._buttonDisabledClass);
+      this._buttonElement.removeAttribute('disabled');
+      this._buttonElement.classList.remove(this._buttonDisabledClass);
     }
   }
 
@@ -52,7 +52,7 @@ export default class FormValidator {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(this._buttonElement)
+        this._toggleButtonState()
       })
     })
   }

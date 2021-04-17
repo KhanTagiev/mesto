@@ -26,7 +26,5 @@ const formElementPhotoCard = popupPhotoCard.querySelector('.form')
 
 const photoCardsContainer = document.querySelector('.photo-cards__container')
 
-const closeKey = "Escape";
-
 export {validateSelectors, openPopupProfileBtn,formElementAvatar,avatarInput, openPopupAvatarBtn, formElementProfile, nameInput, aboutInput,
-  openPopupPhotoCardBtn, formElementPhotoCard, photoCardsContainer, closeKey}
+  openPopupPhotoCardBtn, formElementPhotoCard, photoCardsContainer}
