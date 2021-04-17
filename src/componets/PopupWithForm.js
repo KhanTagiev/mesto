@@ -12,8 +12,7 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const inputValues = this._inputList.map(inputElement => inputElement.value)
-    return inputValues
+    return this._inputList.map(inputElement => inputElement.value)
   }
 
   submitRendering(isSubmit) {
