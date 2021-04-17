@@ -16,7 +16,9 @@ let UserId
 
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-22',
-  token: '11e9f0e1-4daa-4439-a2bf-878699998a8c',
+  headers: {
+    authorization: '11e9f0e1-4daa-4439-a2bf-878699998a8c',
+    'Content-Type': 'application/json'},
 });
 
 const profileInfo = new UserInfo ({
