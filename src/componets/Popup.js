@@ -1,10 +1,9 @@
-import {closeKey} from '../utils/constants.js'
-
 export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
     this._handleClickClose = this._handleClickClose.bind(this);
     this._handleEscClose = this._handleEscClose.bind(this);
+    this._closeKey = "Escape";
   }
 
   _handleClickClose(evt) {
@@ -13,12 +12,12 @@ export default class Popup {
      };
   }
   _handleEscClose(evt) {
-    if (evt.key === closeKey) {
+    if (evt.key === this._closeKey) {
       this.close();
     }
   }
 
-  setEventListeners() {
+  _setEventListeners() {
     this._popupElement.addEventListener('click', this._handleClickClose);
     document.addEventListener('keydown', this._handleEscClose);
   }
@@ -30,6 +29,7 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add('popup_opened');
+    this._setEventListeners()
   }
 
   close() {
