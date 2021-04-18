@@ -24,3 +24,22 @@
 **Просмотр на GitHub Pages**
 
 [Ссылка на страницу GitHub Pages](https://khantagiev.github.io/mesto/index.html)
+
+**Локальное развертывание проекта**
+
+If you want to work on the library locally:
+
+1. Создайте Fork данного репозитория и клонируйте свою версию репозитория
+2. Установите npm зависимости
+
+```sh
+npm install
+```
+
+3. Запустите сборку проекта.
+
+```sh
+npm run build
+```
+
+4. Готовый проект будет находиться в папке `dist`.
